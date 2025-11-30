@@ -17,18 +17,16 @@ namespace margelo::nitro::nitroviewshot::bridge::swift {
   // pragma MARK: std::function<void(const std::string& /* result */)>
   Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = NitroViewShot::Func_void_std__string::fromUnsafe(swiftClosureWrapper);
-    auto swiftClosurePtr = std::make_shared<NitroViewShot::Func_void_std__string>(std::move(swiftClosure));
-    return [swiftClosure = std::move(swiftClosurePtr)](const std::string& result) -> void {
-      swiftClosure->call(result);
+    return [swiftClosure = std::move(swiftClosure)](const std::string& result) mutable -> void {
+      swiftClosure.call(result);
     };
   }
   
   // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
   Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = NitroViewShot::Func_void_std__exception_ptr::fromUnsafe(swiftClosureWrapper);
-    auto swiftClosurePtr = std::make_shared<NitroViewShot::Func_void_std__exception_ptr>(std::move(swiftClosure));
-    return [swiftClosure = std::move(swiftClosurePtr)](const std::exception_ptr& error) -> void {
-      swiftClosure->call(error);
+    return [swiftClosure = std::move(swiftClosure)](const std::exception_ptr& error) mutable -> void {
+      swiftClosure.call(error);
     };
   }
   
