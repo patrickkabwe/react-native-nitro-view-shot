@@ -45,7 +45,7 @@ export function MountCaptureExample() {
       captureMode="mount"
       onCapture={(path) => console.log('Captured to:', path)}
     >
-      <View collapsable={false}>{/* ...content... */}</View>
+      <View>{/* ...content... */}</View>
     </NitroViewShot>
   )
 }
@@ -66,7 +66,7 @@ const Example = () => {
         options={{ fileName: 'profile-card', output: 'base64' }}
         onCapture={(result) => console.log('Got capture:', result)}
       >
-        <View collapsable={false}>{/* ... */}</View>
+        <View>{/* ... */}</View>
       </NitroViewShot>
       <Button
         title="Capture"
@@ -93,7 +93,7 @@ const onPress = () => {
 
 // In your render:
 <View ref={viewRef} collapsable={false}>
-  {/* ...content... */}
+  {/* Your content */}
 </View>
 ```
 
@@ -140,10 +140,21 @@ React Native already has [react-native-view-shot](https://github.com/gre/react-n
 
 ## Notes
 
-- **Important for Android**: Add `collapsable={false}` to the View you want to capture. Android optimizes away views without children, which can cause capture failures. This prop prevents that optimization.
 - Files are written to a `react-native-nitro-view-shot` cache folder inside the platform temp directory; old captures are automatically deleted asynchronously to keep storage clean.
 - Mount captures wait for a non-zero layout before running to avoid invalid-size errors.
 - File deletion happens asynchronously in the background, ensuring fast capture performance without blocking operations.
+
+## Troubleshooting
+
+### Capture fails
+
+Add `collapsable={false}` to the `View` you want to capture. React native optimizes away views without children, which can cause capture failures. This prop prevents that optimization.
+
+```tsx
+<View collapsable={false}>
+    {/* Your content */}
+</View>
+```
 
 ## License
 
