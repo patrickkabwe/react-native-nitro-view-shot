@@ -28,4 +28,12 @@ Pod::Spec.new do |s|
   s.dependency 'React-jsi'
   s.dependency 'React-callinvoker'
   install_modules_dependencies(s)
+
+  s.pod_target_xcconfig = {
+    "CLANG_CXX_LANGUAGE_STANDARD" => "c++20",
+    "CLANG_CXX_LIBRARY" => "libc++",
+    "SWIFT_OBJC_INTEROP_MODE" => "objcxx",
+    # Ensure C++ headers from React are compatible
+    "OTHER_CPLUSPLUSFLAGS" => "$(inherited) -std=c++20",
+  }
 end

@@ -1,7 +1,7 @@
 {
   "name": "react-native-nitro-view-shot",
-  "version": "0.1.0",
-  "description": "react-native-nitro-view-shot is a react native package built with Nitro",
+  "version": "0.0.1",
+  "description": "react native view capture library built with Nitro Modules. Faster than bridge-based solutions with synchronous capture support.",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -12,7 +12,8 @@
     "clean": "git clean -dfX",
     "release": "semantic-release",
     "build": "bun run typecheck && bob build",
-    "codegen": "nitrogen --logLevel=\"debug\" && bun run build && node post-script.js"
+    "codegen": "nitrogen --logLevel=\"debug\" && bun run build && node post-script.js",
+    "postcodegen": "bun --cwd example pod"
   },
   "keywords": [
     "react-native",
