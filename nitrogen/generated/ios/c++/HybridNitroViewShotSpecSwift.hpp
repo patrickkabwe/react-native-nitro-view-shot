@@ -43,9 +43,9 @@ namespace margelo::nitro::nitroviewshot {
   class HybridNitroViewShotSpecSwift: public virtual HybridNitroViewShotSpec {
   public:
     // Constructor from a Swift instance
-    explicit HybridNitroViewShotSpecSwift(NitroViewShot::HybridNitroViewShotSpec_cxx swiftPart):
+    explicit HybridNitroViewShotSpecSwift(const NitroViewShot::HybridNitroViewShotSpec_cxx& swiftPart):
       HybridObject(HybridNitroViewShotSpec::TAG),
-      _swiftPart(std::move(swiftPart)) { }
+      _swiftPart(swiftPart) { }
 
   public:
     // Get the Swift part

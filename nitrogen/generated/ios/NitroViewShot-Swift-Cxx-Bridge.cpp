@@ -33,7 +33,7 @@ namespace margelo::nitro::nitroviewshot::bridge::swift {
   // pragma MARK: std::shared_ptr<HybridNitroViewShotSpec>
   std::shared_ptr<HybridNitroViewShotSpec> create_std__shared_ptr_HybridNitroViewShotSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     NitroViewShot::HybridNitroViewShotSpec_cxx swiftPart = NitroViewShot::HybridNitroViewShotSpec_cxx::fromUnsafe(swiftUnsafePointer);
-    return std::make_shared<margelo::nitro::nitroviewshot::HybridNitroViewShotSpecSwift>(std::move(swiftPart));
+    return std::make_shared<margelo::nitro::nitroviewshot::HybridNitroViewShotSpecSwift>(swiftPart);
   }
   void* NON_NULL get_std__shared_ptr_HybridNitroViewShotSpec_(std__shared_ptr_HybridNitroViewShotSpec_ cppType) {
     std::shared_ptr<margelo::nitro::nitroviewshot::HybridNitroViewShotSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::nitroviewshot::HybridNitroViewShotSpecSwift>(cppType);
