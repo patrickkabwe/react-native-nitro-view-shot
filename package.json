@@ -1,6 +1,6 @@
 {
   "name": "react-native-nitro-view-shot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "react native view capture library built with Nitro Modules. Faster than bridge-based solutions with synchronous capture support.",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
