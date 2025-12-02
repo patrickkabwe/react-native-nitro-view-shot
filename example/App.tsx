@@ -13,7 +13,7 @@ import NitroViewShot, {
   captureRef,
 } from 'react-native-nitro-view-shot';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { getPngDimensionsFromBase64 } from 'utils';
+import { getPngDimensionsFromBase64 } from './utils';
 
 type OutputType = 'file' | 'base64' | null;
 

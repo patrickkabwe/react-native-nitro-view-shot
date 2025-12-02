@@ -90,6 +90,11 @@ const onPress = () => {
   const path = captureRef(viewRef, { fileName: 'inline-card' })
   console.log(path)
 }
+
+// In your render:
+<View ref={viewRef} collapsable={false}>
+  {/* Your content */}
+</View>
 ```
 
 ## API
@@ -138,6 +143,18 @@ React Native already has [react-native-view-shot](https://github.com/gre/react-n
 - Files are written to a `react-native-nitro-view-shot` cache folder inside the platform temp directory; old captures are automatically deleted asynchronously to keep storage clean.
 - Mount captures wait for a non-zero layout before running to avoid invalid-size errors.
 - File deletion happens asynchronously in the background, ensuring fast capture performance without blocking operations.
+
+## Troubleshooting
+
+### Capture fails
+
+Add `collapsable={false}` to the `View` you want to capture. React native optimizes away views without children, which can cause capture failures. This prop prevents that optimization.
+
+```tsx
+<View collapsable={false}>
+    {/* Your content */}
+</View>
+```
 
 ## License
 
