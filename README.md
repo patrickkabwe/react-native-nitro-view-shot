@@ -2,9 +2,9 @@
 
 React Native view capture library built with Nitro Modules. Faster than traditional bridge-based solutions with synchronous capture support and zero serialization overhead.
 
+[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/AynAwQHcB5)
 [![Version](https://img.shields.io/npm/v/react-native-nitro-view-shot?style=for-the-badge)](https://www.npmjs.com/package/react-native-nitro-view-shot)
 [![npm monthly](https://img.shields.io/npm/dm/react-native-nitro-view-shot?style=for-the-badge)](https://www.npmjs.com/package/react-native-nitro-view-shot)
-[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/7KXUyHjz)
 [![License](https://img.shields.io/npm/l/react-native-nitro-view-shot?style=for-the-badge)](https://github.com/patrickkabwe/react-native-nitro-view-shot/LICENSE)
 
 ## Features
@@ -168,4 +168,4 @@ Bootstrapped with [create-nitro-module](https://github.com/patrickkabwe/create-n
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-> 💬 For quick support, join our [Discord channel](https://discord.gg/7KXUyHjz)
+> 💬 For quick support, join our [Discord channel](https://discord.gg/AynAwQHcB5)
