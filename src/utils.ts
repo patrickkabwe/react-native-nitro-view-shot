@@ -1,4 +1,4 @@
-import { findNodeHandle, View } from 'react-native'
+import { findNodeHandle, type View } from 'react-native'
 
 export const getReactNativeTag = (ref: React.RefObject<View | null>) => {
   if (!ref.current) {
