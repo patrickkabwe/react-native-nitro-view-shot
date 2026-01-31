@@ -1,10 +1,8 @@
-import { type HybridObject } from 'react-native-nitro-modules'
-
+import type { HybridObject } from 'react-native-nitro-modules'
 
 export type NitroViewShotOutputType = 'file' | 'base64';
 export type NitroViewShotFormat = 'png' | 'jpg' | 'webp';
 export type NitroViewShotCaptureMode = 'mount' | 'none';
-
 
 export interface ViewShotOptions {
   fileName: string

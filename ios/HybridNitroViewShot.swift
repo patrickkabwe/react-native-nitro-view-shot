@@ -7,7 +7,6 @@
 
 import Foundation
 import NitroModules
-import React
 
 class HybridNitroViewShot: HybridNitroViewShotSpec {
 
@@ -24,32 +23,16 @@ class HybridNitroViewShot: HybridNitroViewShotSpec {
     }
 
     func capture(tag: Double, options: ViewShotOptions) throws -> String {
-        var result: String = ""
-        var error: Error?
-        let semaphore = DispatchSemaphore(value: 0)
-
-        DispatchQueue.main.async {
-            do {
-                result = try self.performCapture(tag: tag, options: options)
-            } catch let e {
-                error = e
+        return try DispatchQueue.main.sync { [weak self] in
+            guard let self else {
+                throw RuntimeError.error(withMessage: "Instance deallocated")
             }
-            semaphore.signal()
+            return try self.performCapture(tag: tag, options: options)
         }
-
-        semaphore.wait()
-
-        if let error = error {
-            throw error
-        }
-
-        return result
     }
 
     private func performCapture(tag: Double, options: ViewShotOptions) throws -> String {
-        let reactTag = NSNumber(value: tag)
-
-        guard let view = getViewForTag(reactTag) else {
+        guard let view = findView(byTag: Int(tag)) else {
             throw RuntimeError.error(
                 withMessage: "View not found for tag: \(tag)"
             )
@@ -82,7 +65,7 @@ class HybridNitroViewShot: HybridNitroViewShotSpec {
                 )
             else {
                 throw RuntimeError.error(
-                    withMessage: "Failure to convert UIImage to JPEG"
+                    withMessage: "Failed to convert UIImage to JPEG"
                 )
             }
             data = jpegData
@@ -93,7 +76,7 @@ class HybridNitroViewShot: HybridNitroViewShotSpec {
         default:
             guard let pngData = image.pngData() else {
                 throw RuntimeError.error(
-                    withMessage: "Failure to convert UIImage to PNG"
+                    withMessage: "Failed to convert UIImage to PNG"
                 )
             }
             data = pngData
@@ -105,21 +88,26 @@ class HybridNitroViewShot: HybridNitroViewShotSpec {
             output: options.output
         )
     }
+}
 
-    private func getUIManager() -> RCTUIManager? {
-        return autoreleasepool {
-            guard let bridge = RCTBridge.current() else {
-                return nil
-            }
-            return bridge.uiManager
-        }
+extension HybridNitroViewShot {
+    private func findView(byTag tag: Int) -> UIView? {
+      guard let window = UIApplication.shared.connectedScenes
+        .compactMap({ $0 as? UIWindowScene })
+        .flatMap({ $0.windows })
+        .first(where: { $0.isKeyWindow }) else {
+        return nil
+      }
+      return findView(in: window, withTag: tag)
     }
-
-    private func getViewForTag(_ tag: NSNumber) -> UIView? {
-        guard let uiManager = getUIManager() else {
-            return nil
+    
+    private func findView(in view: UIView, withTag tag: Int) -> UIView? {
+      if view.tag == tag { return view }
+      for subview in view.subviews {
+        if let found = findView(in: subview, withTag: tag) {
+          return found
         }
-        return autoreleasepool { uiManager.view(forReactTag: tag) }
+      }
+      return nil
     }
-
 }
